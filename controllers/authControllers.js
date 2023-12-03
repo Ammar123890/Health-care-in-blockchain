@@ -32,8 +32,7 @@ module.exports.admin_login = async (req, res) => {
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(200).json({ admin });
   } catch (err) {
-    const errors = handleError(err);
-    res.status(400).json({ errors });
+    res.status(400).json({ errors: handleError(err) });
   }
 };
 
@@ -71,3 +70,5 @@ module.exports.get_admin = async (req, res) => {
   let admin = req.Admin;
   res.status(200).json({ admin });
 };
+
+
