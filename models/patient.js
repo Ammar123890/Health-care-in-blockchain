@@ -154,6 +154,7 @@ patientSchema.pre("save", async function (next) {
 
 patientSchema.statics.login = async function (healthID, password) {
   const patient = await this.findOne({ healthID });
+
   if (!healthID) {
     throw Error("Please enter HealthId");
   }

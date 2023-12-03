@@ -16,8 +16,11 @@ const logoutRoute = require("./routes/logoutRoute");
 const app = express();
 require('dotenv').config();
 
-// Middlewares
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  credentials: true, // To allow sending of cookies
+};
+app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());

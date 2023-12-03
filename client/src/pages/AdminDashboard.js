@@ -11,7 +11,7 @@ const AdminDashboard = (props) => {
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchAdmin() {
-      const res = await fetch("/getadmin");
+      const res = await fetch("http://localhost:3001/getadmin",{credentials: "include"});
       const data = await res.json();
       if (data.AuthError) {
         props.settoastCondition({

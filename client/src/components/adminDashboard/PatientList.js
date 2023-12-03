@@ -8,7 +8,7 @@ const PatientList = (props) => {
 
   useEffect(() => {
     async function fetchPatientList() {
-      const res = await fetch("/patientlist", {
+      const res = await fetch("http://localhost:3001/patientlist", {
         credentials: "include",
       });
       const data = await res.json();

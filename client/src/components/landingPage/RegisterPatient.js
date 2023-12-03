@@ -68,7 +68,7 @@ export default function Register(props) {
 
   useEffect(() => {
     const auth = async () => {
-      const res = await fetch(baseURL+"/auth");
+      const res = await fetch("http://localhost:3001/auth");
       const data = await res.json();
       if (data.msg === "Doctor Login Found") {
         navigate("/doctor/dashboard");
@@ -89,7 +89,7 @@ export default function Register(props) {
     if (patient.password === confirmPassword) {
       setLoading(true);
       e.preventDefault();
-      const res = await fetch(baseURL+"/register/patient", {
+      const res = await fetch("http://localhost:3001/register/patient", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -252,12 +252,12 @@ export default function Register(props) {
 
               <div className=" aadhar lg:grid grid-cols-4 gap-2 mt-4 mr-4">
                 <label className="font-bold lg:text-xl px-4 ">
-                  Aadhar Card No.{" "}
+                    ID Card No.{" "}
                 </label>
                 <div>
                   <input
                     type="text"
-                    placeholder="Aadhar card No."
+                    placeholder="Id card No."
                     required
                     className="pl-4 bg-blue-100 lg:h-10  rounded h-8"
                     value={patient.adharCard}

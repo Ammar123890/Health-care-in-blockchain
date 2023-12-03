@@ -59,7 +59,7 @@ const DoctorDashboard = (props) => {
 
   useEffect(() => {
     async function getdoctor() {
-      const res = await fetch("/getdoctor");
+      const res = await fetch("http://localhost:3001/getdoctor",{credentials: "include"});
       const data = await res.json();
       if (data.AuthError) {
         props.settoastCondition({
@@ -75,7 +75,7 @@ const DoctorDashboard = (props) => {
     async function getpatient() {
       setLoading(true);
       if (props.healthID.length === 12) {
-        const res = await fetch(`/searchpatient/${props.healthID}`);
+        const res = await fetch(`http://localhost:3001/searchpatient/${props.healthID}`, {credentials: "include"});
         const data = await res.json();
 
         if (data.AuthError) {
@@ -115,7 +115,7 @@ const DoctorDashboard = (props) => {
     e.preventDefault();
     if (props.healthID.length === 12) {
       setLoading(true);
-      const res = await fetch(`/searchpatient/${props.healthID}`);
+      const res = await fetch(`http://localhost:3001/searchpatient/${props.healthID}`, {credentials: "include"});
       const data = await res.json();
 
       if (data.AuthError) {

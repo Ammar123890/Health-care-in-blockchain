@@ -66,8 +66,9 @@ export default function Register(props) {
     setPasswordError("");
     if (doctor.password === confirmPassword) {
       setLoading(true);
-      const res = await fetch("/register/doctor", {
+      const res = await fetch("http://localhost:3001/register/doctor",  {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -194,7 +195,7 @@ export default function Register(props) {
             </div>
 
             <div class=" aadhar grid grid-cols-4 gap-2 mt-4 mr-4">
-              <label class="font-bold text-base px-4 ">Aadhar Card No. </label>
+              <label class="font-bold text-base px-4 ">ID Card No. </label>
 
               <input
                 type="tel"

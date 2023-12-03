@@ -37,34 +37,33 @@ module.exports.admin_login = async (req, res) => {
 };
 
 module.exports.auth = async (req, res) => {
-  if (req.cookies.jwt) {
-    const token = req.cookies.jwt;
-    if (token) {
-      jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
-        if (err) {
-          res.status(100).json({ msg: "Proceed to login" });
-        } else {
-          const admin = await Admin.findById(decodedToken.id);
-          const patient = await Patient.findById(decodedToken.id);
-          const doctor = await Doctor.findById(decodedToken.id);
-          if (admin) {
-            res.status(200).json({ msg: "Admin Login Found" });
-          }
-          if (patient) {
-            res.status(200).json({ msg: "Patient Login Found" });
-          }
-          if (doctor) {
-            res.status(200).json({ msg: "Doctor Login Found" });
-          }
-        }
-      });
+  const token = req.cookies.jwt;
+  if (!token) {
+    return res.status(401).json({ msg: "Authentication required. Please login." });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    
+    const admin = await Admin.findById(decodedToken.id);
+    const patient = await Patient.findById(decodedToken.id);
+    const doctor = await Doctor.findById(decodedToken.id);
+
+    if (admin) {
+      return res.status(200).json({ msg: "Admin Login Found" });
+    } else if (patient) {
+      return res.status(200).json({ msg: "Patient Login Found" });
+    } else if (doctor) {
+      return res.status(200).json({ msg: "Doctor Login Found" });
     } else {
-      res.status(100).json({ msg: "Proceed to login" });
+      return res.status(404).json({ msg: "User not found. Proceed to login." });
     }
-  } else {
-    res.status(100).json({ msg: "Proceed to login" });
+  } catch (err) {
+    console.error(err);
+    return res.status(401).json({ msg: "Invalid token. Please login again." });
   }
 };
+
 
 module.exports.get_admin = async (req, res) => {
   let admin = req.Admin;

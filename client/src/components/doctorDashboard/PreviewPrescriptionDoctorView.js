@@ -63,7 +63,7 @@ const PreviewPrescriptionDoctorView = (props) => {
   useEffect(() => {
     async function fetchprescription() {
       const res = await fetch(
-        `/viewprescription/${props.healthID}/${props.prescriptionID}`
+        `http://localhost:3001/viewprescription/${props.healthID}/${props.prescriptionID}`,{credentials: "include"}
       );
       const data = await res.json();
       if (data.AuthError) {
@@ -85,7 +85,7 @@ const PreviewPrescriptionDoctorView = (props) => {
       }
     }
     async function fetchpatient() {
-      const res = await fetch(`/searchpatient/${props.healthID}`);
+      const res = await fetch(`http://localhost:3001/searchpatient/${props.healthID}`,{credentials: "include"});
       const data = await res.json();
 
       if (data.AuthError) {

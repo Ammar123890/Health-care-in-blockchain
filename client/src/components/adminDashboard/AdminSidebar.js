@@ -10,14 +10,28 @@ import dashboard from "../../assets/img/dashboard/dashboard.jpeg";
 const AdminSidebar = (props) => {
   const navigate = useNavigate();
   const logout = async () => {
-    const res = await fetch("/logout");
-    props.settoastCondition({
-      status: "success",
-      message: "Logged out Successfully!!!",
-    });
-    props.setToastShow(true);
-    navigate("/");
+    try {
+      const res = await fetch("http://localhost:3001/logout", {
+        method: 'GET', // or 'GET', depending on your backend setup
+        credentials: 'include', // necessary for the backend to access the cookie
+      });
+      if (res.ok) { // Check if the response is ok (status in the range 200-299)
+        props.settoastCondition({
+          status: "success",
+          message: "Logged out Successfully!!!",
+        });
+        props.setToastShow(true);
+        navigate("/");
+      } else {
+        // Handle any errors if the logout wasn't successful
+        throw new Error('Logout failed');
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle the error state appropriately in the UI
+    }
   };
+  
 
   const [Toggle, setToggle] = useState("Dashboard");
 
@@ -27,6 +41,7 @@ const AdminSidebar = (props) => {
         <div className="flex m-2 mt-4  ">
           <div className="logo m-2  ">
             <img src={logo} className="w-16" alt="logo"></img>
+
           </div>
           <div className="heading font-poppins font-bold text-xl  ">
             <Link to="/">

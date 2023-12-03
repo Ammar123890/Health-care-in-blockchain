@@ -11,7 +11,7 @@ const PatientListCompo = (props) => {
   }, []);
 
   const deletePatient = async () => {
-    const res = await fetch(`/deletepatient/${props.healthID}`, {
+    const res = await fetch(`http://localhost:3001/deletepatient/${props.healthID}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

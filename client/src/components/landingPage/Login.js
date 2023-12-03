@@ -15,7 +15,7 @@ export default function Login(props) {
 
   useEffect(() => {
     const auth = async () => {
-      const res = await fetch(baseURL+"/auth");
+      const res = await fetch("http://localhost:3001/auth",{credentials: "include"});
       const data = await res.json();
       if (data.msg === "Doctor Login Found") {
         navigate("/doctor/dashboard");
@@ -32,11 +32,12 @@ export default function Login(props) {
 
   const handlePatientLogin = async (healthID, password) => {
     setLoading(true);
-    const res = await fetch(baseURL+"/login/patient", {
+    const res = await fetch("http://localhost:3001/login/patient", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify({
         healthID,
         password,
@@ -67,6 +68,7 @@ export default function Login(props) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify({
         email,
         password,

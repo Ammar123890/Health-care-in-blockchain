@@ -16,3 +16,16 @@ module.exports.get_patient = async (req, res) => {
   let patient = req.patient;
   res.status(200).json({ patient });
 };
+
+
+module.exports.login_patient = async (req, res) => {
+  const { email, password } = req.body;
+  console.log(email, password)
+  try {
+    const patient = await Patient.findByCredentials(email, password);
+    const token = await patient.generateAuthToken();
+    res.status(200).json({ patient, token });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+}

@@ -88,7 +88,7 @@ const AddNewDiagnosis = (props) => {
 
   useEffect(() => {
     async function getDoctor() {
-      const res = await fetch("/getdoctor");
+      const res = await fetch("http://localhost:3001/getdoctor", {credentials: "include"});
       const data = await res.json();
       if (data.AuthError) {
         props.settoastCondition({
@@ -112,8 +112,9 @@ const AddNewDiagnosis = (props) => {
   const handleAddPrescription = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const res = await fetch(`/prescription/${props.healthID}`, {
+    const res = await fetch(`http://localhost:3001/prescription/${props.healthID}`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

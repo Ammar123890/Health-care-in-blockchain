@@ -58,7 +58,7 @@ const PatientHistory = (props) => {
 
   useEffect(() => {
     async function getpatient() {
-      const res = await fetch("/getpatient");
+      const res = await fetch("http://localhost:3001/getpatient",{credentials: "include"});
       const data = await res.json();
       if (data.AuthError) {
         props.settoastCondition({
