@@ -144,7 +144,7 @@ export default function Register(props) {
               >
                 Patient
               </button>
-              <button
+              {/* <button
                 onClick={() => setToggle("Doctor")}
                 className={
                   Toggle === "Doctor"
@@ -153,9 +153,9 @@ export default function Register(props) {
                 }
               >
                 Doctor
-              </button>
+              </button> */}
             </div>
-            <div
+            {/* <div
               className={
                 Toggle === "Doctor"
                   ? "h-96 p-2 flex flex-col justify-center "
@@ -174,7 +174,7 @@ export default function Register(props) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className={Toggle === "Patient" ? "" : "hidden"}>
               <div className="lg:grid lg:grid-cols-4 lg:gap-2 mt-4 mr-4 grid grid-cols-4 gap-2">
@@ -351,7 +351,7 @@ export default function Register(props) {
                     type="text"
                     className="bg-blue-100 lg:h-10  rounded  pl-4 h-8"
                     required
-                    placeholder="Taluka"
+                    placeholder="Area"
                     value={patient.address.taluka}
                     onChange={(e) => {
                       let temppatient = { ...patient };
@@ -618,7 +618,7 @@ export default function Register(props) {
                     type="text"
                     className="bg-blue-100 h-10  rounded  pl-4"
                     required
-                    placeholder="Taluka"
+                    placeholder="Area"
                     value={patient.contactPerson.address.taluka}
                     onChange={(e) => {
                       let temppatient = { ...patient };

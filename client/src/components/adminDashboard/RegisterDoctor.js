@@ -199,7 +199,7 @@ export default function Register(props) {
 
               <input
                 type="tel"
-                placeholder="Aadhar card No."
+                placeholder="ID card No."
                 required
                 class="pl-4 bg-blue-100 h-10  rounded"
                 value={doctor.adharCard}
@@ -304,7 +304,7 @@ export default function Register(props) {
                   type="text"
                   class="bg-blue-100 h-10  rounded pl-4"
                   required
-                  placeholder="Taluka"
+                  placeholder="Area"
                   value={doctor.address.taluka}
                   onChange={(e) => {
                     let tempdoctor = { ...doctor };
@@ -526,7 +526,7 @@ export default function Register(props) {
                   type="text"
                   class="bg-blue-100 h-10  rounded pl-4"
                   required
-                  placeholder="Taluka"
+                  placeholder="Area"
                   value={doctor.orgAddress.taluka}
                   onChange={(e) => {
                     let tempdoctor = { ...doctor };
